@@ -6,7 +6,7 @@ import datetime
 
 def get_data():
     """Return content from the 10k_racetimes.txt file"""
-    with open('10k_racetimes.txt', 'rt') as file:
+    with open('challenge/10k_racetimes.txt', 'rt') as file:
         content = file.read()
     return content
 
