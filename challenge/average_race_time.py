@@ -10,8 +10,6 @@ def get_data():
         content = file.read()
     return content
 
-print(get_data())
-
 def get_rhines_times():
     """Return a list of Jennifer Rhines' race times"""
     races = get_data()
