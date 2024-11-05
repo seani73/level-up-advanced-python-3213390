@@ -18,12 +18,11 @@ def get_rhines_times():
     for result in races:
         parts = result.split()
 
-        if "Jennifer Rhines" in parts[1]:
+        if "Jennifer" in parts[1] and "Rhines" in parts [2]:
             times.append(parts[0])
 
     return times
 
-print(get_rhines_times())
 
 def get_average():
     """Return Jennifer Rhines' average race time in the format:
