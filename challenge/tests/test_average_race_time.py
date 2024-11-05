@@ -9,3 +9,5 @@ def test_average_race_time():
     result = get_average()
     expected = '33:13.8'
     assert result == expected
+
+print("Test Output")
