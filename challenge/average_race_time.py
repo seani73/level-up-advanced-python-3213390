@@ -31,4 +31,29 @@ def get_average():
        s corresponds to a seconds digit
        M corresponds to a milliseconds digit (no rounding, just the single digit)"""
     racetimes = get_rhines_times()
-    pass
+    totalTime = 0
+    count = 0
+    
+    for time in racetimes:
+        parts = time.split(":")
+
+        mins = int(parts[0])
+        secs = int(float(parts[1]))
+
+        wholeTime = mins + (secs/60)
+        totalTime = totalTime + wholeTime
+        count = count + 1
+    
+    avgTime = totalTime/count
+    avgMins = int(avgTime)
+    avgSecs = (avgTime - avgMins)*60
+    avgMillis = avgSecs*1000
+    avgMillis = int(avgMillis)/10
+    avgMillis = avgMillis - int(avgMillis)
+    avgMillis = int(round(avgMillis, 1) * 10)
+    avgSecs = int(avgSecs)
+
+    avgTimeFormatted = str(avgMins) + ":" + str(avgSecs) + ":" + str(avgMillis)
+    print(avgTimeFormatted)
+
+    return avgTimeFormatted
