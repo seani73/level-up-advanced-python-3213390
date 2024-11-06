@@ -41,19 +41,20 @@ def get_average():
         secs = int(float(parts[1]))
 
         wholeTime = mins + (secs/60)
-        totalTime = totalTime + wholeTime
+        totalTime += wholeTime
         count = count + 1
     
     avgTime = totalTime/count
     avgMins = int(avgTime)
     avgSecs = (avgTime - avgMins)*60
-    avgMillis = avgSecs*1000
+    avgMillis = avgSecs*10
     avgMillis = int(avgMillis)/10
     avgMillis = avgMillis - int(avgMillis)
     avgMillis = int(round(avgMillis, 1) * 10)
     avgSecs = int(avgSecs)
 
-    avgTimeFormatted = str(avgMins) + ":" + str(avgSecs) + ":" + str(avgMillis)
-    print(avgTimeFormatted)
-
+    avgTimeFormatted = str(avgMins) + ":" + str(avgSecs) + "." + str(avgMillis)
+    
     return avgTimeFormatted
+
+get_average()
