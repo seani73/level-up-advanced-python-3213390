@@ -1,7 +1,7 @@
 import re
 
 patternItalics = re.compile(r'<\/?em>')
-patternSpaces = re.compile(r'( \n*)')
+patternSpaces = re.compile(r'\s+')
 patternParas = re.compile(r'<\/?p>')
 patternURLs = re.compile(r'<a href="(.+?)">(.+?)</a>')
 
@@ -13,7 +13,7 @@ def html2markdown(html):
 
     markdown = re.sub(patternItalics, '*', html)
     markdown = re.sub(patternSpaces, ' ', markdown)
-    markdown = re.sub(patternParas, '\n\n', markdown)
+    markdown = re.sub(patternParas, '\n', markdown)
     markdown = re.sub(patternURLs, r'[\2](\1)', markdown)
 
     return markdown.strip()
