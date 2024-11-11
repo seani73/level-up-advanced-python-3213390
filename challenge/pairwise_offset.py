@@ -1,22 +1,32 @@
 def pairwise_offset(sequence, fillvalue='*', offset=0):
     outputList = []
     seqLength = len(sequence)
-    i = 0
 
     if offset == 0:
         for item in sequence:
             outputList.append((item, item))
-    else:
-        for item in sequence:
-            if i <= offset:
-                outputList.append((item, fillvalue))
-                i += 1
-            else:
-                outputList.append()
-                #Need to know the length of the sequence and the offset to know how many there well be
-                #to know if there will be (item, item) tuples
-                
-                #Need to check if 
+    elif offset > 0 and offset < seqLength:
+        pos = 0
+        for i in range(offset):
+            outputList.append(sequence[i], fillvalue)
+            pos += 1
+        for i in range(seqLength - offset):
+            outputList.append(sequence[i], sequence[pos-offset])
+            pos += 1
+        for i in range(offset):
+            outputList.append(fillvalue, sequence[i])
+    elif offset == seqLength:
+        for i in range(seqLength):
+            outputList.append(sequence[i], fillvalue)
+        for i in range(seqLength):
+            outputList.append(fillvalue, sequence[i])
+    elif offset > seqLength:
+        for i in range(seqLength):
+            outputList.append(sequence[i], fillvalue)
+        for i in range(offset - seqLength):
+            outputList.append(fillvalue, fillvalue)
+        for i in range(seqLength):
+            outputList.append(fillvalue, sequence[i])
 
 
     return None
