@@ -11,10 +11,10 @@ def pairwise_offset(sequence, fillvalue='*', offset=0):
             outputList.append((sequence[i], fillvalue))
             pos += 1
         for i in range(seqLength - offset):
-            outputList.append((sequence[i], sequence[pos-offset]))
+            outputList.append((sequence[pos], sequence[pos-offset]))
             pos += 1
         for i in range(offset):
-            outputList.append((fillvalue, sequence[i]))
+            outputList.append((fillvalue, sequence[i + (seqLength - offset)]))
     elif offset == seqLength:
         for i in range(seqLength):
             outputList.append((sequence[i], fillvalue))
@@ -29,5 +29,3 @@ def pairwise_offset(sequence, fillvalue='*', offset=0):
             outputList.append((fillvalue, sequence[i]))
 
     return outputList
-
-print(pairwise_offset(['a', 'b', 'c', 'd'], '*', 1))
