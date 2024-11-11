@@ -7,7 +7,7 @@ def pairwise_offset(sequence, fillvalue='*', offset=0):
         for item in sequence:
             outputList.append((item, item))
     else:
-        while item in sequence:
+        for item in sequence:
             if i <= offset:
                 outputList.append((item, fillvalue))
                 i += 1
@@ -15,6 +15,8 @@ def pairwise_offset(sequence, fillvalue='*', offset=0):
                 outputList.append()
                 #Need to know the length of the sequence and the offset to know how many there well be
                 #to know if there will be (item, item) tuples
+                
+                #Need to check if 
 
 
     return None
