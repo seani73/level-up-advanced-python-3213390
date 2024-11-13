@@ -18,13 +18,21 @@ def get_event_time(line):
     raceDate = datetime.datetime.strptime(dates[0], '%d %b %Y')
     doB = datetime.datetime.strptime(dates[1], '%d %b %Y')
 
-    age = raceDate.year() - doB.year()
+    age = raceDate.year - doB.year
 
-    if raceDate.month() < doB.month():
+    if raceDate.month < doB.month:
         age -= 1
+
+    parts = line.split()
+    output = (age, parts[0])
+
+    return output
 
 def get_age_slowest_times():
     '''Return a tuple (age, race_time) where:
        age: AyBd is in this format where A and B are integers'''
     races = get_data()
 
+# content = get_data()
+# line = content.splitlines()
+# # print(get_event_time(line[0]))
