@@ -18,10 +18,12 @@ def get_event_time(line):
     raceDate = datetime.datetime.strptime(dates[0], '%d %b %Y')
     doB = datetime.datetime.strptime(dates[1], '%d %b %Y')
 
-    age = raceDate.year - doB.year
+    # age = raceDate.year - doB.year
 
-    if raceDate.month < doB.month:
-        age -= 1
+    # if raceDate.month < doB.month:
+    #     age -= 1
+
+    age = divmod((raceDate - doB).days, 365.25)
 
     parts = line.split()
     output = (age, parts[0])
@@ -30,9 +32,41 @@ def get_event_time(line):
 
 def get_age_slowest_times():
     '''Return a tuple (age, race_time) where:
-       age: AyBd is in this format where A and B are integers'''
-    races = get_data()
+       age: AyBd is in this format where A and B are integers and the race time is her slowest race.'''
+    races = get_data().splitlines()
+    
+    jrRaces = []
 
-# content = get_data()
-# line = content.splitlines()
-# # print(get_event_time(line[0]))
+    for race in races:
+        parts = race.split()
+
+        if parts[1] == "Jennifer" or parts[2] == "Rhines":
+            jrRaces.append(race)
+        
+    slowAge = 0
+    slowMins = 0
+    slowSecs = 0.0
+
+    for race in jrRaces:
+        age, racetime = get_event_time(race)
+        raceMins, raceSeconds = racetime.split(":")
+
+        raceMins = int(raceMins)
+        raceSeconds = float(raceSeconds)
+
+        if raceMins > slowMins:
+            slowMins = raceMins
+            slowSecs = raceSeconds
+            slowAge = age
+        elif raceMins == slowMins:
+            if raceSeconds > slowSecs:
+                slowMins = raceMins
+                slowSecs = raceSeconds
+                slowAge = age
+
+    slowAge = f'{int(slowAge[0])}y{int(slowAge[1])}d'
+    slowTime = f'{slowMins}:{int(slowSecs)}'
+
+    output = (slowAge, slowTime)
+
+    return output
