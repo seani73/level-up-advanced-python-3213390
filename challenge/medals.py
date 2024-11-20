@@ -9,7 +9,11 @@ medal = namedtuple('medal', ['City', 'Edition', 'Sport', 'Discipline', 'Athlete'
 medals = [medal(*line.split(";")) for line in olympics.splitlines()[1:]] #Complete this - medals is a list of medal namedtuples
 
 def get_medals(**kwargs):
-    '''Return a list of medal namedtuples '''
-    pass
+    '''Return a list of medal namedtuples ''' 
+    medalList = []
 
-print(medals)
+    for medal in medals:
+        if all(getattr(medal, key) == value for key, value in kwargs.items()):
+            medalList.append(medal)
+    
+    return medalList
